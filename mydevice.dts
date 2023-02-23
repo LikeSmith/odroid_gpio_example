@@ -1,0 +1,38 @@
+/*
+ *  servp-gpio.dts
+ *
+ * Author: LikeSmith
+ * Date: FEBRUARY 2023
+ * 
+ * overlay to set some gpios
+ */
+
+
+
+/dts-v1/;
+/plugin/;
+
+/ {
+    // Add gpio configuration
+    fragment@0 {
+        target = <0xf8>;
+        __overlay__ {
+            mydevice_conf: pinctrl_mydevice{
+                samsung,pins = "gpx1-2";
+                samsung,pin-function = "0x00";
+            };
+        };
+    };
+    // add custom device with gpio pins
+    fragment@1 {
+        target-path = "/";
+        __overlay__ {
+            mydevice {
+                compatible = "mydevice";
+                status = "okay";
+                pinctrl-0 = <&mydevice_conf>;
+                mydevice-gpio = <0xfa 0x02 0x0>;
+            };
+        };
+    };
+};
