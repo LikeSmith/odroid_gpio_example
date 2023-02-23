@@ -1,0 +1,10 @@
+# build files
+*.ko*
+*.o*
+*.mod*
+*.symvers
+*.order
+*.dtbo
+
+# temporary directory
+tmp
